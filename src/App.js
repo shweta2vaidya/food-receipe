@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import RecipeForm from './components/RecipeForm';
+import RecipeList from './components/RecipeList';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <header className="header">
+          <h1>Recipe Sharing Platform</h1>
+        </header>
+        <nav className="nav-bar">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/recipes" className="nav-link">
+            View Recipes
+          </Link>
+        </nav>
+        <main>
+          <Routes>
+            <Route path="/" element={<RecipeForm />} />
+            <Route path="/recipes" element={<RecipeList />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
